@@ -40,18 +40,16 @@ $(document).on("click", "#catagory-2", function () {
 
 //This is the Giphy API
 $(document).on("click", "#catagory-3", function () {
-    console.log("hello");
     var searchTerm = "dogs"
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=gLeB5PHXzjgIpt57b5y35Y0ukNAkv14k";
-    console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var giph = $("<img>");
-        giph.attr("src", response.data[0].images.original.url);
+        giph.attr("src", response.data[0].images.fixed_height.url);
         giph.attr("alt", "Giphy Gif");
-        $("#category-3").append(giph);
+        $("#catagory-3").append(giph);
     });
 });
 //end giphy api
