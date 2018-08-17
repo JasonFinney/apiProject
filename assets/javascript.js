@@ -70,6 +70,89 @@ $(document).on("click", "#category-2", function () {
     $("#category-2").append(beach);
 });
 
+//Buildings Images
+var buildingsArray = [];
+var queryBuildingsURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=buildings";
+$.ajax({
+    url: queryBuildingsURL,
+    method: "GET"
+}).then(function (response) {
+    for (i = 0; i < 19; i++) {
+        buildingsArray.push(response.hits[i].largeImageURL);
+    }
+})
+
+$(document).on("click", "#category-3", function () {
+    $(".building-content").remove();
+    var building = $("<img>");
+    building.attr("src", buildingsArray[getRandomInt(19)]);
+    building.attr("alt", "Tall Building");
+    building.attr("class", "building-content");
+    $("#category-3").append(building);
+});
+
+//Flowers images
+var flowersArray = [];
+var queryFlowersURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=flowers";
+$.ajax({
+    url: queryFlowersURL,
+    method: "GET"
+}).then(function (response) {
+    for (i = 0; i < 19; i++) {
+        flowersArray.push(response.hits[i].largeImageURL);
+    }
+})
+
+$(document).on("click", "#category-4", function () {
+    $(".flowers-content").remove();
+    var flower = $("<img>");
+    flower.attr("src", flowersArray[getRandomInt(19)]);
+    flower.attr("alt", "Colorful Flower");
+    flower.attr("class", "flowers-content");
+    $("#category-4").append(flower);
+});
+
+//Places images
+var placesArray = [];
+var queryPlacesURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=places";
+$.ajax({
+    url: queryPlacesURL,
+    method: "GET"
+}).then(function (response) {
+    for (i = 0; i < 19; i++) {
+        placesArray.push(response.hits[i].largeImageURL);
+    }
+})
+
+$(document).on("click", "#category-5", function () {
+    $(".places-content").remove();
+    var places = $("<img>");
+    places.attr("src", placesArray[getRandomInt(19)]);
+    places.attr("alt", "What a nice place!");
+    places.attr("class", "places-content");
+    $("#category-5").append(places);
+});
+
+//Space images
+var spaceArray = [];
+var querySpaceURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=space";
+$.ajax({
+    url: querySpaceURL,
+    method: "GET"
+}).then(function (response) {
+    for (i = 0; i < 19; i++) {
+        spaceArray.push(response.hits[i].largeImageURL);
+    }
+});
+
+$(document).on("click", "#category-6", function () {
+    $(".space-content").remove();
+    var space = $("<img>");
+    space.attr("src", spaceArray[getRandomInt(19)]);
+    space.attr("alt", "What a nice place!");
+    space.attr("class", "space-content");
+    $("#category-6").append(space);
+});
 
 $('.topics').on('click', function () {
     $('#image-display').removeClass('hidden');
