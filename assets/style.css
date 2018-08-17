@@ -1,11 +1,35 @@
-.review-choice, img {
-    width: 150px;
-    height: 150px;
-}
-
-h1 {
+navbar {
     text-align: center;
 }
+
+.review-choice, img {
+    width: 135px;
+    height: 135px;
+}
+
+.review-choice {
+    width: 150px;
+    height: 150px;
+    background-color: #d2cece;
+    color: white;
+    font-size: 3em;
+}
+
+#sidebar {
+    background-color: #5e5d5d;
+    padding: 1%;
+    text-align: center;
+    color: white;
+}
+
+#second-display {
+    /* visibility: hidden; */
+    z-index: 100;
+    border: 5px solid black;
+    padding: 5%;
+
+}
+
 
 /* // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
