@@ -38,6 +38,7 @@ $(document).on("click", "#catagory-2", function () {
 });
 // End Pixabay API
 
+
 $('.topics').on('click', function () {
     $('#image-display').removeClass('hidden');
     $('#main-display').addClass('hidden');
