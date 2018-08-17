@@ -7,6 +7,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+//Animal gifs and images
 var animalArray = [];
 var queryCatURL = "https://api.giphy.com/v1/gifs/search?q=cats&api_key=gLeB5PHXzjgIpt57b5y35Y0ukNAkv14k";
 $.ajax({
@@ -41,27 +42,32 @@ $(document).on("click", "#category-1", function () {
     var giph = $("<img>");
     giph.attr("src", animalArray[getRandomInt(19)]);
     giph.attr("alt", "Giphy Gif");
-    giph.attr("class", "animal-content")
+    giph.attr("class", "animal-content");
     $("#category-1").append(giph);
 });
 // End GiphyAPI
 
+// Beaches images
+var beachesArray = [];
+var queryBeachesURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=beaches";
+$.ajax({
+    url: queryBeachesURL,
+    method: "GET"
+}).then(function (response) {
+    for (i = 0; i < 19; i++) {
+        beachesArray.push(response.hits[i].largeImageURL);
+
+    }
+})
 
 // This is the Pixabay API
 $(document).on("click", "#category-2", function () {
-    var search = "buildings";
-    var queryURL = "https://pixabay.com/api/?key=9844470-f932d947d803c027b1f4634e4&q=" + search;
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            var pixImg = $("<img>");
-            pixImg.attr("src", response.hits[0].webformatURL
-            );
-            pixImg.attr("alt", "Pixbay Free Images");
-            $("#category-2").append(pixImg);
-        });
+    $(".beach-content").remove();
+    var beach = $("<img>");
+    beach.attr("src", beachesArray[getRandomInt(19)]);
+    beach.attr("alt", "Pretty, Pretty Beach!");
+    beach.attr("class", "beach-content");
+    $("#category-2").append(beach);
 });
 
 
