@@ -22,12 +22,28 @@ navbar {
     color: white;
 }
 
-#second-display {
-    /* visibility: hidden; */
+.hidden {
+    display: none;
+}
+
+#image-display {
     z-index: 100;
     border: 5px solid black;
     padding: 5%;
+}
 
+#review-display {
+    z-index: 100;
+    border: 5px solid black;
+    padding: 5%;
+}
+
+.btn-secondary {
+    background-color: white;
+}
+
+.btn-secondary:hover {
+    background-color: yellow;
 }
 
 
