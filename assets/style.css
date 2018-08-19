@@ -1,10 +1,6 @@
-navbar {
-    text-align: center;
-}
-
 .review-choice, img {
-    width: 135px;
-    height: 135px;
+    width: 75px;
+    height: 75px;
 }
 
 .review-choice {
@@ -27,15 +23,24 @@ navbar {
 }
 
 #image-display {
-    z-index: 100;
     border: 5px solid black;
     padding: 5%;
 }
 
-#review-display {
-    z-index: 100;
+#rating-display {
     border: 5px solid black;
     padding: 5%;
+    height: 100%;
+}
+
+.rating-display .currentImage, img {
+    width: auto;
+    height: auto;
+}
+
+.currentImage, img {
+    width: 80%;
+    height: 80%;
 }
 
 .btn-secondary {
