@@ -188,17 +188,17 @@ $('.btn-secondary').on('click', function () {
         audio.play();
     }
 
-    if (currentRating === 5) {
+    if (currentRating == 5) {
         $('.displayReview').append('<img src="assets/images/5stars.png" />');
-    } else if (currentRating === 4) {
+    } else if (currentRating == 4) {
         $('.displayReview').append('<img src="assets/images/4stars.png" />');
-    } else if (currentRating === 3) {
+    } else if (currentRating == 3) {
         $('.displayReview').append('<img src="assets/images/3stars.png" />');
-    } else if (currentRating === 2) {
+    } else if (currentRating == 2) {
         $('.displayReview').append('<img src="assets/images/2stars.png" />');
-    } else if (currentRating === 1) {
+    } else {
         $('.displayReview').append('<img src="assets/images/1star.png" />');
-    } else { }
+    }
 
     $('.currentReview').append("<strong>" + currentRating + " stars!</strong><br>");
     setTimeout(function () {
@@ -216,5 +216,8 @@ $('.changeReview').on('click', function () {
 $(".backToHome").on("click", function () {
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
+    $(".currentImage").empty();
+    $(".currentReview").empty();
+    $(".displayReview > img").remove();
 
 })
