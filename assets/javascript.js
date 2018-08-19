@@ -32,7 +32,7 @@ $.ajax({
 });
 
 // This is the the Giphy API to generate pictures for the animals category
-$(document).on("click", "#category-1", function () {
+$(document).on("click", "#animals", function () {
     console.log(animalArray);
     $(".animal-content").remove();
     var currentAnimal = animalArray[getRandomInt(19)];
@@ -61,7 +61,7 @@ $.ajax({
 })
 
 // This is the Pixabay API
-$(document).on("click", "#category-2", function () {
+$(document).on("click", "#beaches", function () {
     $(".beach-content").remove();
     var currentBeach = beachesArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBeach);
@@ -86,7 +86,7 @@ $.ajax({
     }
 })
 
-$(document).on("click", "#category-3", function () {
+$(document).on("click", "#buildings", function () {
     $(".building-content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
@@ -110,7 +110,7 @@ $.ajax({
     }
 })
 
-$(document).on("click", "#category-4", function () {
+$(document).on("click", "#flowers", function () {
     $(".flowers-content").remove();
     var currentFlowers = flowersArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentFlowers);
@@ -134,7 +134,7 @@ $.ajax({
     }
 })
 
-$(document).on("click", "#category-5", function () {
+$(document).on("click", "#places", function () {
     $(".places-content").remove();
     var currentPlaces = placesArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentPlaces);
@@ -158,7 +158,7 @@ $.ajax({
     }
 });
 
-$(document).on("click", "#category-6", function () {
+$(document).on("click", "#space", function () {
     $(".space-content").remove();
     var currentSpace = spaceArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentSpace);
@@ -211,4 +211,10 @@ $('.changeReview').on('click', function () {
     currentRating = '';
     $('#rating-display').addClass('hidden');
     $('#image-display').removeClass('hidden');
+})
+
+$(".backToHome").on("click", function () {
+    $("#rating-display").addClass("hidden");
+    $("#main-display").removeClass("hidden");
+
 })
