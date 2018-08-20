@@ -10,6 +10,12 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var ref = firebase.database().ref();
+ref.once('value', function (snapshot) {
+    JSON.stringify(snapshot);
+    console.log(snapshot);
+});
+
 var masterImageList = [];
 var currentBuilding = '';
 //Random number generator
@@ -163,14 +169,14 @@ $.ajax({
     url: querySpaceURL,
     method: "GET"
 }).then(function (response) {
-    for (i = 0; i < 19; i++) {
+    for (i = 0; i < 1; i++) {
         spaceArray.push(response.hits[i].largeImageURL);
     }
 });
 
 $(document).on("click", "#space", function () {
     $(".content").remove();
-    var currentSpace = spaceArray[getRandomInt(19)];
+    var currentSpace = spaceArray[getRandomInt(1)];
     localStorage.setItem("currentItem", currentSpace);
     var space = $("<img>");
     space.attr("src", currentSpace);
@@ -224,19 +230,36 @@ $('.changeReview').on('click', function () {
 $(".backToHome").on("click", function () {
     event.preventDefault();
     var imgURL = $(".content").attr("src");
+    var ref = firebase.database().ref();
+    ref.once("value")
+        .then(function (snapshot) {
+            var a = snapshot.child("imgURL").exists();
+            console.log(a);
+            if (a === false) {
 
-    database.ref().push({
-        imgURL,
-        currentRating,
-    });
+                database.ref().push({
+                    imgURL,
+                    currentRating,
+                });
+                masterImageList.push(imgURL);
+                console.log("This is imgURL: " + imgURL);
+                console.log("Current Rating: " + currentRating);
+            } else {
+                console.log("boo");
+            };
 
-    console.log("This is imgURL: " + imgURL);
-    console.log("Current Rating: " + currentRating);
-
+        });
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
     $(".currentReview").empty();
     $(".displayReview > img").remove();
 
-})
+});
+
+
+// database.ref().on("child_added", function (childsnapshot) {
+//     console.log(childsnapshot.val());
+//     console.log(childsnapshot.val().imgURL);
+
+// })
