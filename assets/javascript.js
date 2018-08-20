@@ -213,7 +213,29 @@ $('.btn-secondary').on('click', function () {
         $('#rating-display').removeClass('hidden');
         $('#image-display').addClass('hidden');
     }, 2000);
-})
+    var imgURL = $(".content").attr("src");
+    var ref = firebase.database().ref();
+    ref.once("value")
+        .then(function (snapshot) {
+            var snapVal = snapshot.val();
+            var sameArray = [];
+            for (let item in snapVal) {
+                var snapURL = snapVal[item].imgURL;
+                var snapRating = snapVal[item].currentRating;
+                if (snapURL === imgURL) {
+                    sameArray.push(snapRating);
+                };
+                var numberArray = sameArray.map(Number);
+                function getSum(total, num) {
+                    return total + num;
+                };
+                var resultsSum = numberArray.reduce(getSum);
+                var ratingAve = resultsSum / numberArray.length;
+                var roundedAve = Math.round(10 * ratingAve) / 10;
+            };
+        });
+
+});
 
 $('.changeReview').on('click', function () {
     currentRating = '';
@@ -226,42 +248,21 @@ $('.changeReview').on('click', function () {
 $(".backToHome").on("click", function () {
     event.preventDefault();
     var imgURL = $(".content").attr("src");
-    var ref = firebase.database().ref();
-    ref.once("value")
-        .then(function (snapshot) {
-            var snapVal = snapshot.val();
-            console.log(snapshot.val());
-            for (let item in snapVal) {
-                var a = snapVal[item].imgURL;
-                var b = snapVal[item].currentRating;
-                console.log(b);
-                var ratingsArray = [b];
-                if (a === imgURL) {
-                    ratingsArray.push(currentRating);
-                    console.log(ratingsArray);
-                    database.ref().set({
 
-                        currentRating: ratingsArray
-                    });
-                    break;
-                } else {
-                    database.ref().push({
-                        imgURL,
-                        currentRating,
-                    });
-                    masterImageList.push(imgURL);
-                    console.log("This is imgURL: " + imgURL);
-                    console.log("Current Rating: " + currentRating);
-                };
-            }
-        });
+    database.ref().push({
+        imgURL,
+        currentRating,
+    });
+    masterImageList.push(imgURL);
+
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
     $(".currentReview").empty();
     $(".displayReview > img").remove();
-
 });
+
+
 
 
 // database.ref().on("child_added", function (childsnapshot) {
@@ -269,3 +270,25 @@ $(".backToHome").on("click", function () {
 //     console.log(childsnapshot.val().imgURL);
 
 // })
+
+
+
+// var ref = firebase.database().ref();
+// ref.once("value")
+//     .then(function (snapshot) {
+//         var snapVal = snapshot.val();
+//         console.log(snapshot.val());
+//         for (let item in snapVal) {
+//             var a = snapVal[item].imgURL;
+//             var b = snapVal[item].currentRating;
+//             console.log(b);
+//             var ratingsArray = [b];
+//             if (a === imgURL) {
+//                 ratingsArray.push(currentRating);
+//                 console.log(ratingsArray);
+//                 var updates = {};
+//                 updates['/currentRating/'] = ratingsArray;
+//                 database.ref().update(updates);
+//                 break;
+//             } else {
+//             })
