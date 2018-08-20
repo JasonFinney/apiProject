@@ -224,16 +224,15 @@ $('.changeReview').on('click', function () {
 $(".backToHome").on("click", function () {
     event.preventDefault();
     var imgURL = $(".content").attr("src");
-    var newContent = [];
-    newContent.push(imgURL);
-    newContent.push(currentRating);
+
     database.ref().push({
-        newContent,
+        imgURL,
+        currentRating,
     });
 
     console.log("This is imgURL: " + imgURL);
     console.log("Current Rating: " + currentRating);
-    console.log("This is newContent: " + newContent);
+
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
