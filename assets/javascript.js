@@ -10,7 +10,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var masterImageList = []
+var masterImageList = [];
 var currentBuilding = '';
 //Random number generator
 function getRandomInt(max) {
@@ -227,7 +227,9 @@ $(".backToHome").on("click", function () {
     var newContent = [];
     newContent.push(imgURL);
     newContent.push(currentRating);
-    masterImageList.push(newContent);
+    database.ref().push({
+        newContent,
+    });
 
     console.log("This is imgURL: " + imgURL);
     console.log("Current Rating: " + currentRating);
