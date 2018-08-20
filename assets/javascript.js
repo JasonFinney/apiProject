@@ -10,12 +10,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var ref = firebase.database().ref();
-ref.once('value', function (snapshot) {
-    JSON.stringify(snapshot);
-    console.log(snapshot);
-});
-
 var masterImageList = [];
 var currentBuilding = '';
 //Random number generator
@@ -233,21 +227,31 @@ $(".backToHome").on("click", function () {
     var ref = firebase.database().ref();
     ref.once("value")
         .then(function (snapshot) {
-            var a = snapshot.child("imgURL").exists();
-            console.log(a);
-            if (a === false) {
+            var snapVal = snapshot.val();
+            console.log(snapshot.val());
+            for (let item in snapVal) {
+                var a = snapVal[item].imgURL;
+                var b = snapVal[item].currentRating;
+                console.log(b);
+                var ratingsArray = [b];
+                if (a === imgURL) {
+                    ratingsArray.push(currentRating);
+                    console.log(ratingsArray);
+                    database.ref().set({
 
-                database.ref().push({
-                    imgURL,
-                    currentRating,
-                });
-                masterImageList.push(imgURL);
-                console.log("This is imgURL: " + imgURL);
-                console.log("Current Rating: " + currentRating);
-            } else {
-                console.log("boo");
-            };
-
+                        currentRating: ratingsArray
+                    });
+                    break;
+                } else {
+                    database.ref().push({
+                        imgURL,
+                        currentRating,
+                    });
+                    masterImageList.push(imgURL);
+                    console.log("This is imgURL: " + imgURL);
+                    console.log("Current Rating: " + currentRating);
+                };
+            }
         });
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
