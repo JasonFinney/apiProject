@@ -219,12 +219,19 @@ $('.btn-secondary').on('click', function () {
         .then(function (snapshot) {
             var snapVal = snapshot.val();
             var sameArray = [];
+            var commentArray = [];
             for (let item in snapVal) {
                 var snapURL = snapVal[item].imgURL;
                 var snapRating = snapVal[item].currentRating;
+                var snapComment = snapVal[item].comment;
                 if (snapURL === imgURL) {
                     sameArray.push(snapRating);
+                    commentArray.push(snapComment);
                 };
+                var randomcomment = Math.floor(Math.random() * commentArray.length);
+                $("#review1").text(commentArray[randomcomment]);
+                $("#review2").text(commentArray[randomcomment++]);
+                $("#review3").text(commentArray[randomcomment--]);
                 var numberArray = sameArray.map(Number);
                 function getSum(total, num) {
                     return total + num;
@@ -248,10 +255,12 @@ $('.changeReview').on('click', function () {
 $(".backToHome").on("click", function () {
     event.preventDefault();
     var imgURL = $(".content").attr("src");
+    var comment = $("#review-input").val().trim();
 
     database.ref().push({
         imgURL,
         currentRating,
+        comment,
     });
     masterImageList.push(imgURL);
 
@@ -261,34 +270,3 @@ $(".backToHome").on("click", function () {
     $(".currentReview").empty();
     $(".displayReview > img").remove();
 });
-
-
-
-
-// database.ref().on("child_added", function (childsnapshot) {
-//     console.log(childsnapshot.val());
-//     console.log(childsnapshot.val().imgURL);
-
-// })
-
-
-
-// var ref = firebase.database().ref();
-// ref.once("value")
-//     .then(function (snapshot) {
-//         var snapVal = snapshot.val();
-//         console.log(snapshot.val());
-//         for (let item in snapVal) {
-//             var a = snapVal[item].imgURL;
-//             var b = snapVal[item].currentRating;
-//             console.log(b);
-//             var ratingsArray = [b];
-//             if (a === imgURL) {
-//                 ratingsArray.push(currentRating);
-//                 console.log(ratingsArray);
-//                 var updates = {};
-//                 updates['/currentRating/'] = ratingsArray;
-//                 database.ref().update(updates);
-//                 break;
-//             } else {
-//             })
