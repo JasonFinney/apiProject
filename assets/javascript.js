@@ -219,6 +219,8 @@ $('.changeReview').on('click', function () {
     currentRating = '';
     $('#rating-display').addClass('hidden');
     $('#image-display').removeClass('hidden');
+    $(".currentReview").empty();
+    $(".displayReview > img").remove();
 })
 
 $(".backToHome").on("click", function () {
