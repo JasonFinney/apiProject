@@ -1,3 +1,4 @@
+var masterImageList = []
 var currentBuilding = '';
 //Random number generator
 function getRandomInt(max) {
@@ -33,15 +34,13 @@ $.ajax({
 
 // This is the the Giphy API to generate pictures for the animals category
 $(document).on("click", "#animals", function () {
-    console.log(animalArray);
-    $(".animal-content").remove();
+    $(".content").remove();
     var currentAnimal = animalArray[getRandomInt(19)];
-    console.log(animalArray[getRandomInt(19)]);
     localStorage.setItem("currentItem", currentAnimal);
     var giph = $("<img>");
     giph.attr("src", currentAnimal);
     giph.attr("alt", "Giphy Gif");
-    giph.attr("class", "animal-content");
+    giph.attr("class", "content");
     $("#category-1").append(giph);
     $(".currentImage").append(giph);
 });
@@ -62,16 +61,15 @@ $.ajax({
 
 // This is the Pixabay API
 $(document).on("click", "#beaches", function () {
-    $(".beach-content").remove();
+    $(".content").remove();
     var currentBeach = beachesArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBeach);
     var beach = $("<img>");
     beach.attr("src", currentBeach);
     beach.attr("alt", "Pretty, Pretty Beach!");
-    beach.attr("class", "beach-content");
+    beach.attr("class", "content");
     $("#category-2").append(beach);
     $(".currentImage").append(beach);
-    console.log(currentBeach);
 });
 
 //Buildings Images
@@ -87,13 +85,13 @@ $.ajax({
 })
 
 $(document).on("click", "#buildings", function () {
-    $(".building-content").remove();
+    $(".content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
     var building = $("<img>");
     building.attr("src", currentBuilding);
     building.attr("alt", "Tall Building");
-    building.attr("class", "building-content");
+    building.attr("class", "content");
     $("#category-3").append(building);
     $(".currentImage").append(building);
 });
@@ -111,13 +109,13 @@ $.ajax({
 })
 
 $(document).on("click", "#flowers", function () {
-    $(".flowers-content").remove();
+    $(".content").remove();
     var currentFlowers = flowersArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentFlowers);
     var flower = $("<img>");
     flower.attr("src", currentFlowers);
     flower.attr("alt", "Colorful Flower");
-    flower.attr("class", "flowers-content");
+    flower.attr("class", "content");
     $("#category-4").append(flower);
     $(".currentImage").append(flower);
 });
@@ -135,13 +133,13 @@ $.ajax({
 })
 
 $(document).on("click", "#places", function () {
-    $(".places-content").remove();
+    $(".content").remove();
     var currentPlaces = placesArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentPlaces);
     var places = $("<img>");
     places.attr("src", currentPlaces);
     places.attr("alt", "What a nice place!");
-    places.attr("class", "places-content");
+    places.attr("class", "content");
     $("#category-5").append(places);
     $(".currentImage").append(places);
 });
@@ -159,13 +157,13 @@ $.ajax({
 });
 
 $(document).on("click", "#space", function () {
-    $(".space-content").remove();
+    $(".content").remove();
     var currentSpace = spaceArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentSpace);
     var space = $("<img>");
     space.attr("src", currentSpace);
     space.attr("alt", "What a nice place!");
-    space.attr("class", "space-content");
+    space.attr("class", "content");
     $("#category-6").append(space);
     $(".currentImage").append(space);
 });
@@ -177,8 +175,6 @@ $('.topics').on('click', function () {
 
 $('.btn-secondary').on('click', function () {
     currentRating = $(this).val();
-    console.log(currentBuilding.val);
-    console.log(currentRating);
     $('#main-display').addClass('hidden');
     if (currentRating > 2) {
         var audio = $("#like")[0];
@@ -214,6 +210,16 @@ $('.changeReview').on('click', function () {
 })
 
 $(".backToHome").on("click", function () {
+    event.preventDefault();
+    var imgURL = $(".content").attr("src");
+    var newContent = [];
+    newContent.push(imgURL);
+    newContent.push(currentRating);
+    masterImageList.push(newContent);
+
+    console.log("This is imgURL: " + imgURL);
+    console.log("Current Rating: " + currentRating);
+    console.log("This is newContent: " + newContent);
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
