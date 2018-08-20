@@ -1,3 +1,13 @@
+var config = {
+    apiKey: "AIzaSyDN2yW-6RIO6gyvGsbF6soBGfdEDwKL78g",
+    authDomain: "rate-it-5f6dd.firebaseapp.com",
+    databaseURL: "https://rate-it-5f6dd.firebaseio.com",
+    projectId: "rate-it-5f6dd",
+    storageBucket: "rate-it-5f6dd.appspot.com",
+    messagingSenderId: "662008280706"
+};
+firebase.initializeApp(config);
+
 var currentBuilding = '';
 //Random number generator
 function getRandomInt(max) {
