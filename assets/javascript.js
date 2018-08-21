@@ -214,34 +214,41 @@ $('.btn-secondary').on('click', function () {
         $('#image-display').addClass('hidden');
     }, 2000);
     var imgURL = $(".content").attr("src");
+    console.log(imgURL);
     var ref = firebase.database().ref();
     ref.once("value")
         .then(function (snapshot) {
             var snapVal = snapshot.val();
+            console.log(snapVal);
             var sameArray = [];
             var commentArray = [];
-            for (let item in snapVal) {
-                var snapURL = snapVal[item].imgURL;
-                var snapRating = snapVal[item].currentRating;
-                var snapComment = snapVal[item].comment;
+
+            for (var key in snapVal) {
+                var snapURL = snapVal[key].imgURL;
+                var snapRating = snapVal[key].currentRating;
+                var snapComment = snapVal[key].comment;
                 if (snapURL === imgURL) {
+                    console.log("hello");
                     sameArray.push(snapRating);
                     commentArray.push(snapComment);
                 };
+                console.log(sameArray);
+                console.log(commentArray);
                 var randomcomment = Math.floor(Math.random() * commentArray.length);
-                $("#review1").text(commentArray[randomcomment]);
-                $("#review2").text(commentArray[randomcomment++]);
-                $("#review3").text(commentArray[randomcomment--]);
+                console.log(randomcomment);
                 var numberArray = sameArray.map(Number);
-                function getSum(total, num) {
-                    return total + num;
+                console.log(numberArray);
+                var sum = 0;
+                for (let o = 0; o < numberArray.length; o++) {
+                    sum += numberArray[o];
                 };
-                var resultsSum = numberArray.reduce(getSum);
-                var ratingAve = resultsSum / numberArray.length;
+                console.log(sum);
+                var ratingAve = sum / numberArray.length;
+                console.log(ratingAve);
                 var roundedAve = Math.round(10 * ratingAve) / 10;
+                console.log(roundedAve);
             };
         });
-
 });
 
 $('.changeReview').on('click', function () {
