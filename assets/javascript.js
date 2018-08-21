@@ -174,7 +174,7 @@ $(document).on("click", "#space", function () {
     localStorage.setItem("currentItem", currentSpace);
     var space = $("<img>");
     space.attr("src", currentSpace);
-    space.attr("alt", "What a nice place!");
+    space.attr("alt", "Spaced Out!");
     space.attr("class", "content space");
     $("#category-6").append(space);
     $(".currentImage").append(space);
@@ -256,11 +256,13 @@ $(".backToHome").on("click", function () {
     event.preventDefault();
     var imgURL = $(".content").attr("src");
     var comment = $("#review-input").val().trim();
+    var classes = $(".content").attr("class");
 
     database.ref().push({
         imgURL,
         currentRating,
         comment,
+        classes,
     });
     masterImageList.push(imgURL);
 
