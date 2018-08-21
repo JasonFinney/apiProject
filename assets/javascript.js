@@ -10,6 +10,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
