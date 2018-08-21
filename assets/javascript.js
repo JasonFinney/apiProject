@@ -9,8 +9,13 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+
 var timesRated = 1;
 var commentArray;
+
+
+
+
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -95,6 +100,7 @@ $.ajax({
 })
 
 $(document).on("click", "#buildings", function () {
+    console.log("WHy can't this fucking thing work");
     $(".content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
