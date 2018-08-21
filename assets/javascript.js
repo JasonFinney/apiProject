@@ -9,7 +9,8 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
+var timesRated = 1;
+var commentArray;
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -203,8 +204,8 @@ $('.btn-secondary').on('click', function () {
         $('.displayReview').append('<img src="assets/images/2stars.png" />');
     } else {
         $('.displayReview').append('<img src="assets/images/1star.png" />');
-    }
-    // will fix below
+    };
+
     $('.currentReview').append("<strong>" + currentRating + " stars!</strong><br>");
     setTimeout(function () {
         $('#rating-display').removeClass('hidden');
@@ -214,51 +215,22 @@ $('.btn-secondary').on('click', function () {
     console.log(imgURL);
     var ref = firebase.database().ref();
     ref.orderByChild("imgURL").equalTo(imgURL).once("value", function (snapshot) {
+        commentArray = [];
         if (snapshot.val()) {
+            console.log("exists!")
+            Number(timesRated);
+            timesRated++;
+
+
             // we had this image already so update it with new rating average and increment the timesRated
         } else {
+            console.log("Doesn't exist!")
+            var ratingAve;
+            timesRated = 1;
+
             // this is a new image, create a new record for it
-        }
+        };
     });
-
-
-    ref.once("value")
-        .then(function (snapshot) {
-            var snapVal = snapshot.val();
-            console.log(snapVal);
-            var sameArray = [];
-            var commentArray = [];
-            for (let key1 in snapVal) {
-                console.log(key1);
-            };
-
-            for (var key in snapVal) {
-                console.log(key);
-                var snapURL = snapVal[key].imgURL;
-                var snapRating = snapVal[key].currentRating;
-                var snapComment = snapVal[key].comment;
-                if (snapURL === imgURL) {
-                    console.log("hello");
-                    sameArray.push(snapRating);
-                    commentArray.push(snapComment);
-                };
-                console.log(sameArray);
-                console.log(commentArray);
-                var randomcomment = Math.floor(Math.random() * commentArray.length);
-                console.log(randomcomment);
-                var numberArray = sameArray.map(Number);
-                console.log(numberArray);
-                var sum = 0;
-                for (let o = 0; o < numberArray.length; o++) {
-                    sum += numberArray[o];
-                };
-                console.log(sum);
-                var ratingAve = sum / numberArray.length;
-                console.log(ratingAve);
-                var roundedAve = Math.round(10 * ratingAve) / 10;
-                console.log(roundedAve);
-            };
-        });
 });
 // will fix above
 $('.changeReview').on('click', function () {
@@ -280,8 +252,9 @@ $(".backToHome").on("click", function () {
         currentRating,
         comment,
         classes,
+        timesRated
     });
-
+    commentArray.push(comment);
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
