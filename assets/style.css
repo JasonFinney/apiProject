@@ -1,3 +1,20 @@
+#mainNav {
+    overflow: hidden;
+    background-color: white;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+#logo {
+    max-width: 60%;
+    max-height: 60%;
+}
+.carousel-inner {
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+}
 .review-choice, img {
     width: 75px;
     height: 75px;
