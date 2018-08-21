@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,51 +12,227 @@
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <link rel="stylesheet" href="assets/animate.css">
     <link rel="stylesheet" href="assets/style.css">
-
-
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger">
+                <img src="assets/images/rateitlogo.jpg" id="logo">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#signin">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#seeallreviews">See All Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contactus">Contact Us</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <header class="masthead text-center text-white d-flex">
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                </div>
+            </div>
+        </div>
+    </header>
+    </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12 navbar">
-                <h1>Rate It!</h1>
-            </div>
-        </div>
-        <div class="pic-dump" id="picture-dump">
-            <h2>Animal Pics</h2>
-            <div class="animal-rated"></div>
-            <h2>Beach Pics</h2>
-            <div class="beaches-rated"></div>
-            <h2>Building Pics</h2>
-            <div class="buildings-rated"></div>
-            <h2>Flowers Pics</h2>
-            <div class="flowers-rated"></div>
-            <h2>Places Pics</h2>
-            <div class="places-rated"></div>
-            <h2>Space Pics</h2>
-            <div class="space-rated"></div>
-        </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDN2yW-6RIO6gyvGsbF6soBGfdEDwKL78g",
-            authDomain: "rate-it-5f6dd.firebaseapp.com",
-            databaseURL: "https://rate-it-5f6dd.firebaseio.com",
-            projectId: "rate-it-5f6dd",
-            storageBucket: "rate-it-5f6dd.appspot.com",
-            messagingSenderId: "662008280706"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-        crossorigin='anonymous'></script>
-    <script src="assets/allImages.js"></script>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 navbar">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 navbar">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12 navbar">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-12 navbar">
+                                                                <br>
+                                                                <br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- image display -->
+                                                <div class="row hidden" id="image-display" data-state="hidden">
+                                                    <div class="col-md-12" id="second-display">
+                                                        <div class="currentImage animated bounce"></div>
+                                                        <div class="reviewChoice">
+                                                            <div class="btn-toolbar mb-3 animated bounce" role="toolbar" aria-label="Toolbar with button groups">
+                                                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                                    <button type="button" class="btn btn-secondary" value="1" data-value="1">
+                                                                        <img src="assets/images/emptyStar.png">
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-secondary" value="2" data-value="2">
+                                                                        <img src="assets/images/emptyStar.png">
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-secondary" value="3" data-value="3">
+                                                                        <img src="assets/images/emptyStar.png">
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-secondary" value="4" data-value="4">
+                                                                        <img src="assets/images/emptyStar.png">
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-secondary" value="5" data-value="5">
+                                                                        <img src="assets/images/emptyStar.png">
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <h1>Others have said...</h1>
+                                                            <div class="reviews" id="review1"></div>
+                                                            <div class="reviews" id="review2"></div>
+                                                            <div class="reviews" id="review3"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- rating display -->
+                                                <div class="row hidden" id="rating-display" data-state="hidden">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                <div class="currentImage animated bounce"></div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="displayReview animated bounce">
+                                                                    <h3>Your Review:</h3>
+                                                                    <div class="currentReview"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="priorReviews">
+                                                                    <h3>Others' Reviews:</h3>
+                                                                    <p>
+                                                                        <img src="assets/images/5stars.png">
+                                                                        <br>
+                                                                        <span id="5results">0</span> people have rated this
+                                                                        image 5 stars.
+                                                                    </p>
+                                                                    <p>
+                                                                        <img src="assets/images/4stars.png">
+                                                                        <br>
+                                                                        <span id="4results">0</span> people have rated this
+                                                                        image 4 stars.
+                                                                    </p>
+                                                                    <p>
+                                                                        <img src="assets/images/3stars.png">
+                                                                        <br>
+                                                                        <span id="3results">0</span> people have rated this
+                                                                        image 3 stars.
+                                                                    </p>
+                                                                    <p>
+                                                                        <img src="assets/images/2stars.png">
+                                                                        <br>
+                                                                        <span id="2results">0</span> people have rated this
+                                                                        image 2 stars.
+                                                                    </p>
+                                                                    <p>
+                                                                        <img src="assets/images/1star.png">
+                                                                        <br>
+                                                                        <span id="1results">0</span> people have rated this
+                                                                        image 1 star.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <p>Based on the prior reviews, do you want to change your
+                                                                    review?
+                                                                </p>
+                                                                <button class="changeReview">Change Your Review?</button>
+                                                                <button class="backToHome">Submit Your Rewiew!</button>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="yourReview">Add your review here!
+                                                                    <label for="review-input"></label>
+                                                                    <input class="form-control" id="review-input" placeholder="Type your review here!!" type="text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="pic-dump" id="picture-dump">
+                                                <h2>Animal Pics</h2>
+                                                <div class="animal-rated"></div>
+                                                <h2>Beach Pics</h2>
+                                                <div class="beaches-rated"></div>
+                                                <h2>Building Pics</h2>
+                                                <div class="buildings-rated"></div>
+                                                <h2>Flowers Pics</h2>
+                                                <div class="flowers-rated"></div>
+                                                <h2>Places Pics</h2>
+                                                <div class="places-rated"></div>
+                                                <h2>Space Pics</h2>
+                                                <div class="space-rated"></div>
+                                            </div>
+                                            <div class="container ">
+                                                <hr class="style-two">
+                                                <div class="text-center center-block ">
+                                                    <p class="txt-railway ">COPYRIGHT © 2018 RATE IT INC. ALL RIGHTS RESERVED.
+                                                    </p>
+                                                    <br />
+                                                    <img src="assets/images/fb.png " id="fb">
+                                                    <img src="assets/images/insta.jpg " id="insta">
+                                                    <img src="assets/images/twitter.png " id="twit">
+                                                </div>
+                                                <hr class="style-two">
+                                            </div>
+
+                                            <br />
+
+
+                                            <audio id="like">
+                                                <source src="assets/applause.mp3">
+                                                </source>
+                                                HTML5 Needed
+                                            </audio>
+                                            <audio id="dislike">
+                                                <source src="assets/fail-trumpet.mp3">
+                                                </source>
+                                                HTML5 Needed
+                                            </audio>
+
+
+
+                                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                                                crossorigin="anonymous"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                                                crossorigin="anonymous"></script>
+                                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                                                crossorigin="anonymous"></script>
+                                            <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
+                                                crossorigin='anonymous'></script>
+                                            <script src="assets/javascript.js"></script>
+                                            <script src="assets/allImages.js"></script>
 </body>
 
 </html>
