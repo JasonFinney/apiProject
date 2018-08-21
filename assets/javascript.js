@@ -94,6 +94,7 @@ $.ajax({
 })
 
 $(document).on("click", "#buildings", function () {
+    console.log("WHy can't this fucking thing work");
     $(".content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
