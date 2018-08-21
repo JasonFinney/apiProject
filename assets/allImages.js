@@ -7,7 +7,9 @@ ref.once("value").then(function (snapshot) {
     for (let item in snapVal) {
         var snapURL = snapVal[item].imgURL;
         var snapRating = snapVal[item].currentRating;
+        var snapClass = snapVal[item].classes;
 
+        console.log(snapClass)
         urlList.push(snapURL);
 
         console.log(snapURL);
@@ -15,7 +17,20 @@ ref.once("value").then(function (snapshot) {
         var newImage = $("<img>");
         newImage.attr("src", snapURL);
         newImage.attr("class", "generated-image");
-        $("#picture-dump").append(newImage).append("Average Rating: " + snapRating);
+        if (snapClass === "content beaches") {
+            $(".beaches-rated").append(newImage).append("Rating: " + snapRating);
+        } else if (snapClass === "content animals") {
+            $(".animal-rated").append(newImage).append("Rating: " + snapRating);
+        } else if (snapClass === "content buildings") {
+            $(".buildings-rated").append(newImage).append("Rating: " + snapRating);
+        } else if (snapClass === "content flowers") {
+            $(".flowers-rated").append(newImage).append("Rating: " + snapRating);
+        } else if (snapClass === "content places") {
+            $(".places-rated").append(newImage).append("Rating: " + snapRating);
+        } else if (snapClass === "content space") {
+            $(".space-rated").append(newImage).append("Rating: " + snapRating);
+        }
+
 
         var images = $("#picture-dump").find("img").map(function () { return this.src; }).get();
 
