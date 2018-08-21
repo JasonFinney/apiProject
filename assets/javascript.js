@@ -10,8 +10,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var masterImageList = [];
-var currentBuilding = '';
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -67,9 +65,8 @@ $.ajax({
 }).then(function (response) {
     for (i = 0; i < 19; i++) {
         beachesArray.push(response.hits[i].largeImageURL);
-
-    }
-})
+    };
+});
 
 // This is the Pixabay API
 $(document).on("click", "#beaches", function () {
@@ -117,8 +114,8 @@ $.ajax({
 }).then(function (response) {
     for (i = 0; i < 19; i++) {
         flowersArray.push(response.hits[i].largeImageURL);
-    }
-})
+    };
+});
 
 $(document).on("click", "#flowers", function () {
     $(".content").remove();
@@ -141,8 +138,8 @@ $.ajax({
 }).then(function (response) {
     for (i = 0; i < 19; i++) {
         placesArray.push(response.hits[i].largeImageURL);
-    }
-})
+    };
+});
 
 $(document).on("click", "#places", function () {
     $(".content").remove();
@@ -165,7 +162,7 @@ $.ajax({
 }).then(function (response) {
     for (i = 0; i < 1; i++) {
         spaceArray.push(response.hits[i].largeImageURL);
-    }
+    };
 });
 
 $(document).on("click", "#space", function () {
@@ -183,7 +180,7 @@ $(document).on("click", "#space", function () {
 $('.topics').on('click', function () {
     $('#image-display').removeClass('hidden');
     $('#main-display').addClass('hidden');
-})
+});
 
 $('.btn-secondary').on('click', function () {
     currentRating = $(this).val();
@@ -207,7 +204,7 @@ $('.btn-secondary').on('click', function () {
     } else {
         $('.displayReview').append('<img src="assets/images/1star.png" />');
     }
-
+    // will fix below
     $('.currentReview').append("<strong>" + currentRating + " stars!</strong><br>");
     setTimeout(function () {
         $('#rating-display').removeClass('hidden');
@@ -216,14 +213,27 @@ $('.btn-secondary').on('click', function () {
     var imgURL = $(".content").attr("src");
     console.log(imgURL);
     var ref = firebase.database().ref();
+    ref.orderByChild("imgURL").equalTo(imgURL).once("value", function (snapshot) {
+        if (snapshot.val()) {
+            // we had this image already so update it with new rating average and increment the timesRated
+        } else {
+            // this is a new image, create a new record for it
+        }
+    });
+
+
     ref.once("value")
         .then(function (snapshot) {
             var snapVal = snapshot.val();
             console.log(snapVal);
             var sameArray = [];
             var commentArray = [];
+            for (let key1 in snapVal) {
+                console.log(key1);
+            };
 
             for (var key in snapVal) {
+                console.log(key);
                 var snapURL = snapVal[key].imgURL;
                 var snapRating = snapVal[key].currentRating;
                 var snapComment = snapVal[key].comment;
@@ -250,14 +260,14 @@ $('.btn-secondary').on('click', function () {
             };
         });
 });
-
+// will fix above
 $('.changeReview').on('click', function () {
     currentRating = '';
     $('#rating-display').addClass('hidden');
     $('#image-display').removeClass('hidden');
     $(".currentReview").empty();
     $(".displayReview > img").remove();
-})
+});
 
 $(".backToHome").on("click", function () {
     event.preventDefault();
@@ -271,7 +281,6 @@ $(".backToHome").on("click", function () {
         comment,
         classes,
     });
-    masterImageList.push(imgURL);
 
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
