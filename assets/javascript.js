@@ -52,7 +52,7 @@ $(document).on("click", "#animals", function () {
     var giph = $("<img>");
     giph.attr("src", currentAnimal);
     giph.attr("alt", "Giphy Gif");
-    giph.attr("class", "content");
+    giph.attr("class", "content animals");
     $("#category-1").append(giph);
     $(".currentImage").append(giph);
 });
@@ -79,7 +79,7 @@ $(document).on("click", "#beaches", function () {
     var beach = $("<img>");
     beach.attr("src", currentBeach);
     beach.attr("alt", "Pretty, Pretty Beach!");
-    beach.attr("class", "content");
+    beach.attr("class", "content beaches");
     $("#category-2").append(beach);
     $(".currentImage").append(beach);
 });
@@ -103,7 +103,7 @@ $(document).on("click", "#buildings", function () {
     var building = $("<img>");
     building.attr("src", currentBuilding);
     building.attr("alt", "Tall Building");
-    building.attr("class", "content");
+    building.attr("class", "content buildings");
     $("#category-3").append(building);
     $(".currentImage").append(building);
 });
@@ -127,7 +127,7 @@ $(document).on("click", "#flowers", function () {
     var flower = $("<img>");
     flower.attr("src", currentFlowers);
     flower.attr("alt", "Colorful Flower");
-    flower.attr("class", "content");
+    flower.attr("class", "content flowers");
     $("#category-4").append(flower);
     $(".currentImage").append(flower);
 });
@@ -151,7 +151,7 @@ $(document).on("click", "#places", function () {
     var places = $("<img>");
     places.attr("src", currentPlaces);
     places.attr("alt", "What a nice place!");
-    places.attr("class", "content");
+    places.attr("class", "content places");
     $("#category-5").append(places);
     $(".currentImage").append(places);
 });
@@ -175,7 +175,7 @@ $(document).on("click", "#space", function () {
     var space = $("<img>");
     space.attr("src", currentSpace);
     space.attr("alt", "What a nice place!");
-    space.attr("class", "content");
+    space.attr("class", "content space");
     $("#category-6").append(space);
     $(".currentImage").append(space);
 });
