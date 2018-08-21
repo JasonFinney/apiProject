@@ -56,6 +56,15 @@
     background-color: yellow;
 }
 
+.pic-dump {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.generated-image {
+    
+}
+
 
 /* // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
