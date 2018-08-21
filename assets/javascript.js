@@ -267,3 +267,27 @@ $(".backToHome").on("click", function () {
     $(".currentReview").empty();
     $(".displayReview > img").remove();
 });
+
+// $('.btn-secondary').on('click', function () {
+//     $('.priorReviews').append("<strong>" + roundedAve + " stars!" + "</strong>" + "<br>");
+//     if (roundedAve == 5) {
+//         $('.priorReviews').append('<img src="assets/images/5stars.png" />');
+//     } else if (roundedAve < 5 && roundedAve > 4) {
+//         $('.priorReviews').append('<img src="assets/images/4andstars.png" />');
+//     } else if (roundedAve == 4) {
+//         $('.priorReviews').append('<img src="assets/images/4stars.png" />');
+//     } else if (roundedAve < 4 && roundedAve > 3) {
+//         $('.priorReviews').append('<img src="assets/images/3andstars.png" />');
+//     } else if (roundedAve == 3) {
+//         $('.priorReviews').append('<img src="assets/images/3stars.png" />');
+//     } else if (roundedAve < 3 && roundedAve > 2) {
+//         $('.priorReviews').append('<img src="assets/images/2andstars.png" />');
+//     } else if (roundedAve == 2) {
+//         $('.priorReviews').append('<img src="assets/images/2stars.png" />');
+//     } else if (currentRating < 2 && roundedAve > 1) {
+//         $('.priorReviews').append('<img src="assets/images/1andstars.png" />');
+//     } else {
+//         $('.priorReviews').append('<img src="assets/images/1star.png" />');
+//     }
+// })
+
