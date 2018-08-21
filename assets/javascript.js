@@ -10,8 +10,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var masterImageList = [];
-var currentBuilding = '';
+//var masterImageList = [];
+//var currentBuilding = '';
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
