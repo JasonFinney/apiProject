@@ -164,14 +164,14 @@ $.ajax({
     url: querySpaceURL,
     method: "GET"
 }).then(function (response) {
-    for (i = 0; i < 1; i++) {
+    for (i = 0; i < 19; i++) {
         spaceArray.push(response.hits[i].largeImageURL);
     };
 });
 
 $(document).on("click", "#space", function () {
     $(".content").remove();
-    var currentSpace = spaceArray[getRandomInt(1)];
+    var currentSpace = spaceArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentSpace);
     var space = $("<img>");
     space.attr("src", currentSpace);
