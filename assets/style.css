@@ -74,12 +74,12 @@ hr.style-one {
 
 .rating-display .currentImage, img {
     width: auto;
-    height: auto;
+    height: auto; 
 }
 
 .currentImage, img {
     width: 80%;
-    height: 80%;
+    height: 80%; 
 }
 
 .btn-secondary {
