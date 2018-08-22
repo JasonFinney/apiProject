@@ -41,9 +41,8 @@
     </nav>
     <br>
     <br>
-    <!-- Page Content -->
+    <!-- MAIN DISPLAY -->
     <div class="container">
-        <!-- Page Heading -->
         <h1 class="my-4">Page Heading
             <small>Secondary Text</small>
         </h1>
@@ -129,75 +128,83 @@
         </div>
         <!-- image display -->
         <div class="row hidden" id="image-display" data-state="hidden">
-            <div class="container">
-                <div class="container">
-                    <!-- Jumbotron Header -->
-                    <header class="jumbotron my-4">
-                        <div class="currentImage animated bounce"></div>
-                        <div class="reviewChoice">
-                            <br>
-                            <br>
-                            <div class="btn-toolbar mb-3 animated bounce" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-secondary" value="1" data-value="1">
-                                        <img src="assets/images/emptyStar.png">
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" value="2" data-value="2">
-                                        <img src="assets/images/emptyStar.png">
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" value="3" data-value="3">
-                                        <img src="assets/images/emptyStar.png">
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" value="4" data-value="4">
-                                        <img src="assets/images/emptyStar.png">
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" value="5" data-value="5">
-                                        <img src="assets/images/emptyStar.png">
-                                    </button>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="reviews" id="review1"></div>
-                            <div class="reviews" id="review2"></div>
-                            <div class="reviews" id="review3"></div>
-                        </div>
-                </div>
-                </header>
-                <!-- Page Features -->
-                <div class="col-md-12">
-                    <h2 class="card-title">Others Have Said...</h2>
-                    <img src="assets/images/stars.jpg" id="star">
-                    </a>
-                </div>
-                <br>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="#">
-                                <img class="card-img-top" src="assets/images/reviewplaceholder.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Edit Your Review</a>
+            <div class="col-md-12" id="second-display">
+                <div class="currentImage animated bounce"></div>
+                <div class="reviewChoice">
+                    <div class="btn-toolbar mb-3 animated bounce" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-secondary" value="1" data-value="1">
+                                <img src="assets/images/emptyStar.png">
+                            </button>
+                            <button type="button" class="btn btn-secondary" value="2" data-value="2">
+                                <img src="assets/images/emptyStar.png">
+                            </button>
+                            <button type="button" class="btn btn-secondary" value="3" data-value="3">
+                                <img src="assets/images/emptyStar.png">
+                            </button>
+                            <button type="button" class="btn btn-secondary" value="4" data-value="4">
+                                <img src="assets/images/emptyStar.png">
+                            </button>
+                            <button type="button" class="btn btn-secondary" value="5" data-value="5">
+                                <img src="assets/images/emptyStar.png">
+                            </button>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="#">
-                                <img class="card-img-top" src="assets/images/reviewplaceholder.jpg" alt="">
-                            </a>
+            </div>
+        </div>
+        <!-- rating display -->
+        <div class="row hidden" id="rating-display" data-state="hidden">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="currentImage animated bounce"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="displayReview animated bounce">
+                            <h3>Your Review:</h3>
+                            <div class="currentReview">
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn btn-primary">See More Reviews</a>
+                        <br>
+                        <div class="yourReview">Add Review Comments Here
+                            <label for="review-input"></label>
+                            <input class="form-control" id="review-input" placeholder="Type your review here" type="text">
+                            <br>
+                            <button class="backToHome">Submit</button>
+                            <br>
                         </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="priorReviews">
+                                <h2>Average Reviews of Others:</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p>Based on the prior reviews, do you want to change your review?</p>
+                            </div>
+                            <br>
+                        </div>
+
+                        <button class="changeReview">Change Your Review?</button>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
     <!-- Footer -->
     <footer>

@@ -10,6 +10,9 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+var timesRated = 1;
+var commentArray;
+
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -94,6 +97,7 @@ $.ajax({
 })
 
 $(document).on("click", "#buildings", function () {
+    console.log("WHy can't this fucking thing work");
     $(".content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
@@ -184,6 +188,14 @@ $('.topics').on('click', function () {
 
 $('.btn-secondary').on('click', function () {
     currentRating = $(this).val();
+    database.ref();
+    console.log(database.ref().val);
+    if (database.ref().val !== 'undefined') {
+        roundedAve = + currentRating / 2;
+    } else {
+        roundedAve = currentRating;
+    }
+    console.log(roundedAve);
     $('#main-display').addClass('hidden');
     if (currentRating > 2) {
         var audio = $("#like")[0];
@@ -203,8 +215,8 @@ $('.btn-secondary').on('click', function () {
         $('.displayReview').append('<img src="assets/images/2stars.png" />');
     } else {
         $('.displayReview').append('<img src="assets/images/1star.png" />');
-    }
-    // will fix below
+    };
+
     $('.currentReview').append("<strong>" + currentRating + " stars!</strong><br>");
     setTimeout(function () {
         $('#rating-display').removeClass('hidden');
@@ -214,51 +226,24 @@ $('.btn-secondary').on('click', function () {
     console.log(imgURL);
     var ref = firebase.database().ref();
     ref.orderByChild("imgURL").equalTo(imgURL).once("value", function (snapshot) {
+        commentArray = [];
         if (snapshot.val()) {
+            console.log("exists!")
+            Number(timesRated);
+            timesRated++;
+
+            console.log(snapshot);
+
+
             // we had this image already so update it with new rating average and increment the timesRated
         } else {
+            console.log("Doesn't exist!")
+            var ratingAve;
+            timesRated = 1;
+
             // this is a new image, create a new record for it
-        }
+        };
     });
-
-
-    ref.once("value")
-        .then(function (snapshot) {
-            var snapVal = snapshot.val();
-            console.log(snapVal);
-            var sameArray = [];
-            var commentArray = [];
-            for (let key1 in snapVal) {
-                console.log(key1);
-            };
-
-            for (var key in snapVal) {
-                console.log(key);
-                var snapURL = snapVal[key].imgURL;
-                var snapRating = snapVal[key].currentRating;
-                var snapComment = snapVal[key].comment;
-                if (snapURL === imgURL) {
-                    console.log("hello");
-                    sameArray.push(snapRating);
-                    commentArray.push(snapComment);
-                };
-                console.log(sameArray);
-                console.log(commentArray);
-                var randomcomment = Math.floor(Math.random() * commentArray.length);
-                console.log(randomcomment);
-                var numberArray = sameArray.map(Number);
-                console.log(numberArray);
-                var sum = 0;
-                for (let o = 0; o < numberArray.length; o++) {
-                    sum += numberArray[o];
-                };
-                console.log(sum);
-                var ratingAve = sum / numberArray.length;
-                console.log(ratingAve);
-                var roundedAve = Math.round(10 * ratingAve) / 10;
-                console.log(roundedAve);
-            };
-        });
 });
 // will fix above
 $('.changeReview').on('click', function () {
@@ -280,11 +265,38 @@ $(".backToHome").on("click", function () {
         currentRating,
         comment,
         classes,
+        timesRated
     });
-
+    commentArray.push(comment);
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
     $(".currentReview").empty();
     $(".displayReview > img").remove();
 });
+
+
+$('.btn-secondary').on('click', function () {
+    $('.priorReviews').append("<strong>" + roundedAve + " stars!" + "</strong>" + "<br>");
+    if (roundedAve == 5) {
+        $('.priorReviews').append('<img src="assets/images/5stars.png" />');
+    } else if (roundedAve < 5 && roundedAve > 4) {
+        $('.priorReviews').append('<img src="assets/images/4andstars.png" />');
+    } else if (roundedAve == 4) {
+        $('.priorReviews').append('<img src="assets/images/4stars.png" />');
+    } else if (roundedAve < 4 && roundedAve > 3) {
+        $('.priorReviews').append('<img src="assets/images/3andstars.png" />');
+    } else if (roundedAve == 3) {
+        $('.priorReviews').append('<img src="assets/images/3stars.png" />');
+    } else if (roundedAve < 3 && roundedAve > 2) {
+        $('.priorReviews').append('<img src="assets/images/2andstars.png" />');
+    } else if (roundedAve == 2) {
+        $('.priorReviews').append('<img src="assets/images/2stars.png" />');
+    } else if (currentRating < 2 && roundedAve > 1) {
+        $('.priorReviews').append('<img src="assets/images/1andstars.png" />');
+    } else {
+        $('.priorReviews').append('<img src="assets/images/1star.png" />');
+    }
+})
+
+
