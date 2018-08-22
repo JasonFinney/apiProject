@@ -90,6 +90,17 @@ hr.style-one {
     background-color: yellow;
 }
 
+.ratings {
+font-family: Arial, Helvetica, sans-serif
+}
+
+.rateCount {
+font-family: Arial, Helvetica, sans-serif
+}
+
+.comments{
+    font-family: Arial, Helvetica, sans-serif
+}
 
 /* // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
