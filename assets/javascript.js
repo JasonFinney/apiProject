@@ -13,9 +13,6 @@ var database = firebase.database();
 var timesRated = 1;
 var commentArray;
 
-
-
-
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -191,6 +188,14 @@ $('.topics').on('click', function () {
 
 $('.btn-secondary').on('click', function () {
     currentRating = $(this).val();
+    database.ref();
+    console.log(database.ref().val);
+    if (database.ref().val !== 'undefined') {
+        roundedAve = + currentRating / 2;
+    } else {
+        roundedAve = currentRating;
+    }
+    console.log(roundedAve);
     $('#main-display').addClass('hidden');
     if (currentRating > 2) {
         var audio = $("#like")[0];
@@ -226,6 +231,8 @@ $('.btn-secondary').on('click', function () {
             console.log("exists!")
             Number(timesRated);
             timesRated++;
+
+            console.log(snapshot);
 
 
             // we had this image already so update it with new rating average and increment the timesRated
@@ -267,3 +274,29 @@ $(".backToHome").on("click", function () {
     $(".currentReview").empty();
     $(".displayReview > img").remove();
 });
+
+
+$('.btn-secondary').on('click', function () {
+    $('.priorReviews').append("<strong>" + roundedAve + " stars!" + "</strong>" + "<br>");
+    if (roundedAve == 5) {
+        $('.priorReviews').append('<img src="assets/images/5stars.png" />');
+    } else if (roundedAve < 5 && roundedAve > 4) {
+        $('.priorReviews').append('<img src="assets/images/4andstars.png" />');
+    } else if (roundedAve == 4) {
+        $('.priorReviews').append('<img src="assets/images/4stars.png" />');
+    } else if (roundedAve < 4 && roundedAve > 3) {
+        $('.priorReviews').append('<img src="assets/images/3andstars.png" />');
+    } else if (roundedAve == 3) {
+        $('.priorReviews').append('<img src="assets/images/3stars.png" />');
+    } else if (roundedAve < 3 && roundedAve > 2) {
+        $('.priorReviews').append('<img src="assets/images/2andstars.png" />');
+    } else if (roundedAve == 2) {
+        $('.priorReviews').append('<img src="assets/images/2stars.png" />');
+    } else if (currentRating < 2 && roundedAve > 1) {
+        $('.priorReviews').append('<img src="assets/images/1andstars.png" />');
+    } else {
+        $('.priorReviews').append('<img src="assets/images/1star.png" />');
+    }
+})
+
+
