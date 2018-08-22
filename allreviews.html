@@ -182,28 +182,28 @@
                                             <br>
                                             <div id="main-display" class="pic-dump container" id="picture-dump">
                                                 <div>
-                                                    <h2>Animals</h2>
-                                                    <div class="animal-rated container"></div>
+                                                    <button class="collapsible">Animals</button>
+                                                    <div class="animal-rated container content"></div>
                                                 </div>
                                                 <div>
-                                                    <h2>Beaches</h2>
-                                                    <div class="beaches-rated container"></div>
+                                                    <button class="collapsible">Beaches</button>
+                                                    <div class="beaches-rated container content"></div>
                                                 </div>
                                                 <div>
-                                                    <h2>Buildings</h2>
-                                                    <div class="buildings-rated container"></div>
+                                                    <button class="collapsible">Buildings</button>
+                                                    <div class="buildings-rated container content"></div>
                                                 </div>
                                                 <div>
-                                                    <h2>Flowers</h2>
-                                                    <div class="flowers-rated container"></div>
+                                                    <button class="collapsible">Flowers</button>
+                                                    <div class="flowers-rated container content"></div>
                                                 </div>
                                                 <div>
-                                                    <h2>Places</h2>
-                                                    <div class="places-rated container"></div>
+                                                    <button class="collapsible">Places</button>
+                                                    <div class="places-rated container content"></div>
                                                 </div>
                                                 <div>
-                                                    <h2>Space</h2>
-                                                    <div class="space-rated container"></div>
+                                                    <button class="collapsible">Space</button>
+                                                    <div class="space-rated container content"></div>
                                                 </div>
                                             </div>
                                             <div class="container ">
@@ -233,7 +233,22 @@
                                                 HTML5 Needed
                                             </audio>
 
+                                            <script>
+                                                var coll = document.getElementsByClassName("collapsible");
+                                                var i;
 
+                                                for (i = 0; i < coll.length; i++) {
+                                                    coll[i].addEventListener("click", function () {
+                                                        this.classList.toggle("active");
+                                                        var content = this.nextElementSibling;
+                                                        if (content.style.maxHeight) {
+                                                            content.style.maxHeight = null;
+                                                        } else {
+                                                            content.style.maxHeight = content.scrollHeight + "px";
+                                                        }
+                                                    });
+                                                }
+                                            </script>
 
                                             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
                                                 crossorigin="anonymous"></script>
