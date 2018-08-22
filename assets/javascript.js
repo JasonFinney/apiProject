@@ -11,11 +11,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var timesRated = 1;
-var commentArray;
-
-
-
-
+var commentArray = [];
+var flag = false;
+var averageRating = 4;
+var uniqueID = 0;
+var betterURL;
 //Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -100,7 +100,6 @@ $.ajax({
 })
 
 $(document).on("click", "#buildings", function () {
-    console.log("WHy can't this fucking thing work");
     $(".content").remove();
     var currentBuilding = buildingsArray[getRandomInt(19)];
     localStorage.setItem("currentItem", currentBuilding);
@@ -212,6 +211,7 @@ $('.btn-secondary').on('click', function () {
         $('.displayReview').append('<img src="assets/images/1star.png" />');
     };
 
+
     $('.currentReview').append("<strong>" + currentRating + " stars!</strong><br>");
     setTimeout(function () {
         $('#rating-display').removeClass('hidden');
@@ -221,16 +221,22 @@ $('.btn-secondary').on('click', function () {
     console.log(imgURL);
     var ref = firebase.database().ref();
     ref.orderByChild("imgURL").equalTo(imgURL).once("value", function (snapshot) {
+        var snap = snapshot.val();
+        console.log(snap);
         commentArray = [];
+
         if (snapshot.val()) {
-            console.log("exists!")
+            console.log("exists!");
+            snapshot.ref.update({ "-LKSyhPg72ADMFynmfWw/currentRating": averageRating });
             Number(timesRated);
             timesRated++;
+            flag = true;
 
 
             // we had this image already so update it with new rating average and increment the timesRated
         } else {
             console.log("Doesn't exist!")
+            uniqueID++;
             var ratingAve;
             timesRated = 1;
 
@@ -252,15 +258,19 @@ $(".backToHome").on("click", function () {
     var imgURL = $(".content").attr("src");
     var comment = $("#review-input").val().trim();
     var classes = $(".content").attr("class");
-
-    database.ref().push({
-        imgURL,
-        currentRating,
-        comment,
-        classes,
-        timesRated
-    });
     commentArray.push(comment);
+    if (flag === true) {
+        database.ref().child("comment").push().key;
+
+    } else {
+        database.ref().child(uniqueID).set({
+            imgURL,
+            currentRating,
+            comment,
+            classes,
+            timesRated
+        });
+    };
     $("#rating-display").addClass("hidden");
     $("#main-display").removeClass("hidden");
     $(".currentImage").empty();
