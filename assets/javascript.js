@@ -275,6 +275,7 @@ $(".backToHome").on("click", function () {
     $(".displayReview > img").remove();
 });
 
+
 $('.btn-secondary').on('click', function () {
     $('.priorReviews').append("<strong>" + roundedAve + " stars!" + "</strong>" + "<br>");
     if (roundedAve == 5) {
@@ -297,4 +298,5 @@ $('.btn-secondary').on('click', function () {
         $('.priorReviews').append('<img src="assets/images/1star.png" />');
     }
 })
+
 
