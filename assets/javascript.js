@@ -275,7 +275,7 @@ $(".backToHome").on("click", function () {
     $(".displayReview > img").remove();
 });
 
-
+// this is a meaningless comment please ignore
 $('.btn-secondary').on('click', function () {
     $('.priorReviews').append("<strong>" + roundedAve + " stars!" + "</strong>" + "<br>");
     if (roundedAve == 5) {
