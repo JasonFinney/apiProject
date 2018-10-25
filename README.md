@@ -1,11 +1,11 @@
 # apiProject
 
-Crew Hub :anchor:
+Rate It!
 
-A bulletin board app for Chicago Area sailing enthusiasts
+A rating app that can be used to generate marketing data for proposed marketing images. Pulls gifs and images from several APIs. Uses a document database to store user reactions to the presented gifs and images.
 
-![Stars](/assets/5stars.png)
-Format: ![5 Stars Logo](https://github.com/JasonFinney/apiProject/blob/master/assets/5stars.png)
+![Five Stars](/assets/images/5stars.png)
+Format: ![5 Stars Logo](https://github.com/JasonFinney/apiProject/blob/master/assets/images/5stars.png)
 
 ## Live Link 
 
@@ -21,7 +21,7 @@ JavaScript/jQuery
 
 Firebase
 
-animate.css
+Animate.css
 
 ## Authors
 
@@ -34,7 +34,9 @@ Paul Jensen | https://www.linkedin.com/in/paul-jensen-9b1a6311/ | https://github
 
 ## Acknowledgments
 
-openclipart.org – clip art for nautical flags
+openclipart.org
 
 Giphy.com
+
+Pixabay.com
 
